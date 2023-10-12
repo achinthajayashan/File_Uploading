@@ -10,5 +10,37 @@ section{
 #container{
     width: 100%;
     background-color: cornflowerblue;
+    display: flex;
+    flex-direction: row;
+}
 
+#uploadingSec{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid black;
+    padding: 4px;
+}
+
+#showImg{
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    margin-left: 10%;
+    border: 1px solid black;
+}
+
+#btnUpload{
+    width: 300px;
+    height: 30px;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+#tableSec{
+    width: 60%;
+}
+
+table{
+    width: 100%;
 }
