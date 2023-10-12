@@ -16,4 +16,39 @@ $('#btnUpload').click(function () {
 
     console.log(imagePath);
 
+
+    $.ajax({
+        url: '/images/upload',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            alert(response);
+            loadImages();
+        },
+        error: function() {
+            alert('Failed to upload image.');
+        }
+    });
+
+
 })
+
+function loadImages() {
+    $.ajax({
+        url: '/list-images',
+        success: function(images) {
+            var tableBody = $('#imageTableBody');
+            tableBody.empty();
+            var num =1;
+            images.forEach(function(image) {
+                tableBody.append("<tr><td>num</td><td>image</td><td><img src='user_uploaded_images/" + image + "' width='100'></td></tr>");
+                num++;
+            });
+        },
+        error: function() {
+            alert('Failed to load images.');
+        }
+    });
+}
