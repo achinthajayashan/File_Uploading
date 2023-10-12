@@ -28,6 +28,8 @@ section{
     background-color: white;
     margin-left: 10%;
     border: 1px solid black;
+    background-position: center;
+    background-size: cover;
 }
 
 #btnUpload{
