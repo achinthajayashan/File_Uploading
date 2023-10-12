@@ -6,8 +6,8 @@ $('#btnUpload').click(function () {
 
     var fileInput = document.getElementById('inputField');
     var file = fileInput.files[0];
-    // var formData = new FormData();
-    // formData.append('file',file);
+    var formData = new FormData();
+    formData.append('file',file);
 
     fileReader.onload =function (e) {
         $('#showImg').css("background-image","url("+e.target.result+")");
