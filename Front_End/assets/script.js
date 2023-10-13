@@ -36,14 +36,17 @@ $('#btnUpload').click(function () {
 })
 
 function loadImages() {
+    num =1;
     $.ajax({
         url: 'http://localhost:8080/app/images',
         success: function(images) {
             var tableBody = $('#imageTableBody');
             tableBody.empty();
-            var num =1;
+
             images.forEach(function(image) {
-                tableBody.append("<tr><td>num</td><td>image</td><td><img src='/Users/achintha/Desktop/Images/" + image + "' width='100'></td></tr>");
+                var number = num;
+                console.log(num);
+                tableBody.append("<tr><td>"+number+"</td><td>"+image+"</td><td><img src='/Users/achintha/Desktop/Images/" + image + "' width='100px'></td></tr>");
                 num++;
             });
         },
