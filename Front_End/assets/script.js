@@ -1,4 +1,4 @@
-
+// loadImages();
 $('#btnUpload').click(function () {
     console.log("Clicked");
 
@@ -14,18 +14,18 @@ $('#btnUpload').click(function () {
     };
     fileReader.readAsDataURL(file);
 
-    console.log(imagePath);
+    // console.log(imagePath);
 
 
     $.ajax({
-        url: '/images/upload',
+        url: 'http://localhost:8080/app/images',
         type: 'POST',
         data: formData,
         processData: false,
         contentType: false,
         success: function(response) {
             alert(response);
-            loadImages();
+             loadImages();
         },
         error: function() {
             alert('Failed to upload image.');
@@ -37,13 +37,13 @@ $('#btnUpload').click(function () {
 
 function loadImages() {
     $.ajax({
-        url: '/list-images',
+        url: 'http://localhost:8080/app/images',
         success: function(images) {
             var tableBody = $('#imageTableBody');
             tableBody.empty();
             var num =1;
             images.forEach(function(image) {
-                tableBody.append("<tr><td>num</td><td>image</td><td><img src='user_uploaded_images/" + image + "' width='100'></td></tr>");
+                tableBody.append("<tr><td>num</td><td>image</td><td><img src='/Users/achintha/Desktop/Images/" + image + "' width='100'></td></tr>");
                 num++;
             });
         },
