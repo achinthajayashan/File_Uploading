@@ -1,6 +1,7 @@
 package lk.ijse.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,14 +12,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/images")
 @CrossOrigin
 public class ImageController {
 
-    private List<String> imageList = new ArrayList<>();
+    private List<Object> imageList = new ArrayList<>();
 
     @PostMapping()
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
@@ -33,8 +36,17 @@ public class ImageController {
         }
     }
 
-    @GetMapping()
+//    @GetMapping()
+//    public List<Object> listImages() {
+//        return imageList;
+//    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<String> listImages() {
-        return imageList;
+        File folder = new File("/Users/achintha/Desktop/Images/");
+        return Arrays.stream(folder.listFiles())
+                .filter(file -> file.isFile())
+                .map(File::getName)
+                .collect(Collectors.toList());
     }
 }
